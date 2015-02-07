@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vcohere <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/02/07 00:44:41 by vcohere           #+#    #+#             */
+/*   Updated: 2015/02/07 00:44:42 by vcohere          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void		check_list(t_swap *list, int nb)
@@ -22,10 +34,10 @@ t_swap		*check_entry(char **av)
 	a = NULL;
 	while (av[++i])
 	{
-		if (!ft_strisdigit(av[i]))
+		if (!ft_strisdigit(av[i]) || (!ft_strisdigit(*av + i + 1) && av[i][0] == '-'))
 			ft_puterror();
 		check_list(a, ft_atoi(av[i]));
-		a = push_list(a, ft_atoi(av[i]));
+		a = push_end_list(a, ft_atoi(av[i]));
 	}
 	return (a);
 }

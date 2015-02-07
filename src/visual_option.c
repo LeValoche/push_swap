@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   visual_option.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vcohere <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/02/07 00:45:04 by vcohere           #+#    #+#             */
+/*   Updated: 2015/02/07 00:45:05 by vcohere          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void			put_tiret(int n)
@@ -74,17 +86,16 @@ void			print_stacks(t_swap **pile)
 	system("clear");
 	a = A;
 	b = B;
-	i = 0;
+	i = -1;
 	if (!size)
 		size = stack_size(pile[0]);
 	if (!len)
 		len = biggest_len(pile);
 	put_tiret(len * 2 + 7);
-	while (i < size)
+	while (++i < size)
 	{
 		put_lol(a, b, len);
 		put_tiret(len * 2 + 7);
-		i++;
 		if (a)
 			a = a->next;
 		if (b)

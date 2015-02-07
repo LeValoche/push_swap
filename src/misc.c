@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   misc.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vcohere <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/02/07 00:44:45 by vcohere           #+#    #+#             */
+/*   Updated: 2015/02/07 00:44:47 by vcohere          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void			ft_puterror(void)
@@ -17,18 +29,4 @@ int				ft_strisdigit(char *str)
 			return (0);
 	}
 	return (1);
-}
-
-t_swap			*push_list(t_swap *list, int nb)
-{
-	t_swap		*nw;
-
-	if (!(nw = (t_swap *)malloc(sizeof(t_swap))))
-		ft_puterror();
-	nw->n = nb;
-	nw->next = NULL;
-	if (!list)
-		return (nw);
-	nw->next = list;
-	return (nw);
 }
