@@ -83,7 +83,7 @@ void			print_stacks(t_swap **pile)
 	static int	len;
 	int			i;
 
-	system("clear");
+	CLEAR;
 	a = A;
 	b = B;
 	i = -1;
