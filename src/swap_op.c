@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-char		*swap(t_swap ***pile, int ch)
+void		swap(t_swap ***pile, int ch)
 {
 	t_swap	*a;
 	t_swap	*b;
@@ -22,10 +22,13 @@ char		*swap(t_swap ***pile, int ch)
 	a->next = b->next;
 	b->next = a;
 	*pile[ch] = b;
-	return (ft_strjoin(" s", (ch == 0) ? "a" : "b"));
+	if (ch == 0)
+		ft_putstr("sa ");
+	else
+		ft_putstr("sb ");
 }
 
-char		*rotate(t_swap ***pile, int ch)
+void		rotate(t_swap ***pile, int ch)
 {
 	t_swap	*a;
 	t_swap	*b;
@@ -38,10 +41,13 @@ char		*rotate(t_swap ***pile, int ch)
 	b->next = *pile[ch];
 	b->next->next = NULL;
 	*pile[ch] = a;
-	return (ft_strjoin(" r", (ch == 0) ? "a" : "b"));
+	if (ch == 0)
+		ft_putstr("ra ");
+	else
+		ft_putstr("rb ");
 }
 
-char		*reverse(t_swap ***pile, int ch)
+void		reverse(t_swap ***pile, int ch)
 {
 	t_swap	*a;
 	t_swap	*b;
@@ -55,15 +61,21 @@ char		*reverse(t_swap ***pile, int ch)
 	a = b->next;
 	b->next = NULL;
 	*pile[ch] = a;
-	return (ft_strjoin(" rr", (ch == 0) ? "a" : "b"));
+	if (ch == 0)
+		ft_putstr("rra ");
+	else
+		ft_putstr("rrb ");
 }
 
-char		*push(t_swap ***pile, int ch)
+void		push(t_swap ***pile, int ch)
 {
 	t_swap	**stack;
 
 	stack = *pile;
 	stack[ch] = push_list(stack[ch], stack[(ch + 1) % 2]->n);
 	stack[(ch + 1) % 2] = stack[(ch + 1) % 2]->next;
-	return (ft_strjoin(" p", (ch == 0) ? "a" : "b"));
+	if (ch == 0)
+		ft_putstr("pa ");
+	else
+		ft_putstr("pb ");
 }

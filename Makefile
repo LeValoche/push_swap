@@ -10,7 +10,6 @@ SRC_NAME =	main.c\
 			list_misc.c\
 			sort_me.c\
 			swap_op.c\
-			visual_option.c
 
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
@@ -44,10 +43,12 @@ clean:
 	@echo "Deleted files :"
 	@rm -fv $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+	cd $(LIB_PATH) ; $(MAKE) -f Makefile clean
 
 fclean: clean
 	@echo "Deleted files :"
 	@rm -fv $(NAME)
+	cd $(LIB_PATH) ; $(MAKE) -f Makefile fclean
 
 re: fclean all
 

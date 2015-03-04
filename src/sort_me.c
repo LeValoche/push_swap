@@ -12,68 +12,45 @@
 
 #include "push_swap.h"
 
-static void	print_pile(t_swap *pile)
-{
-	if (pile && pile->next)
-		print_pile(pile->next);
-	if (pile)
-		ft_putnbr(pile->n);
-	ft_putstr(" ");
-}
-
-static void	treat_options(t_swap **pile, int options, char *res)
-{
-	if (options & 0b010)
-	{
-		system("clear");
-		print_stacks(pile);
-		ft_putendl(ft_strtrim(res));
-		sleep(1);
-	}
-	else if (options & 0b001)
-	{
-		ft_putstr("a: ");
-		print_pile(pile[0]);
-		ft_putstr("\nb: ");
-		print_pile(pile[1]);
-		ft_putendl("\n");
-	}
-	else if (is_sorted(pile, 0) && pile[1] == NULL)
-		ft_putendl(ft_strtrim(res));
-}
-
-static char	*b_to_a(t_swap **pile, int options, char *res)
+static void	b_to_a(t_swap **pile)
 {
 	while (stack_size(pile[1]) > 0)
-	{
-		res = ft_strjoin(res, push(&pile, 0));
-		treat_options(pile, options, res);
-	}
-	return (res);
+		push(&pile, 0);
 }
 
-void		sort_me(t_swap **pile, int options)
+void		sort_me(t_swap **pile)
 {
 	int		size;
 	int		low;
-	char	*res;
 
 	size = stack_size(pile[0]);
-	res = ft_strdup("");
 	while (stack_size(pile[1]) != size)
 	{
-		treat_options(pile, options, res);
 		low = lowest_nb(pile[0]);
 		if (is_sorted(pile, 0) && is_sorted(pile, 1))
 			break ;
 		else if (low == 0)
-			res = ft_strjoin(res, push(&pile, 1));
+			push(&pile, 1);
 		else if (low == 1)
-			res = ft_strjoin(res, swap(&pile, 0));
+			swap(&pile, 0);
 		else if (low < stack_size(pile[0]) / 2)
-			res = ft_strjoin(res, rotate(&pile, 0));
+			rotate(&pile, 0);
 		else if (low >= stack_size(pile[0]) / 2)
-			res = ft_strjoin(res, reverse(&pile, 0));
+			reverse(&pile, 0);
 	}
-	res = ft_strjoin(res, b_to_a(pile, options, res));
+	b_to_a(pile);
+	ft_putendl("");
+}
+
+void		pre_sort(t_swap **pile)
+{
+	reverse(&pile, 0);
+	reverse(&pile, 0);
+	swap(&pile, 0);
+	rotate(&pile, 0);
+	rotate(&pile, 0);
+	if (!is_sorted(pile, 0))
+		sort_me(pile);
+	ft_putendl("");
+	exit(0);
 }

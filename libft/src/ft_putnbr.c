@@ -20,16 +20,5 @@ void	ft_putnbr(int n)
 		write(1, "-2147483647", 11);
 		return ;
 	}
-	if (n < 0)
-	{
-		n = -n;
-		ft_putchar('-');
-	}
-	else if (n > 9)
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
-	else
-		ft_putchar(n + 48);
+	ft_putstr(ft_itoa(n));
 }

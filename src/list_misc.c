@@ -56,11 +56,11 @@ int				is_sorted(t_swap **pile, int ch)
 	t_swap		*tmp;
 
 	tmp = pile[ch];
-	while (tmp->next != NULL)
+	while (tmp && tmp->next)
 	{
-		if (ch == 0 && tmp->n > tmp->next->n)
+		if (tmp->next && ch == 0 && tmp->n > tmp->next->n)
 			return (0);
-		if (ch == 1 && tmp->n < tmp->next->n)
+		if (tmp->next && ch == 1 && tmp->n < tmp->next->n)
 			return (0);
 		tmp = tmp->next;
 	}
