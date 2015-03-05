@@ -33,9 +33,9 @@ void		sort_me(t_swap **pile)
 			push(&pile, 1);
 		else if (low == 1)
 			swap(&pile, 0);
-		else if (low < stack_size(pile[0]) / 2)
+		else if (low <= stack_size(pile[0]) / 2)
 			rotate(&pile, 0);
-		else if (low >= stack_size(pile[0]) / 2)
+		else if (low > stack_size(pile[0]) / 2)
 			reverse(&pile, 0);
 	}
 	b_to_a(pile);

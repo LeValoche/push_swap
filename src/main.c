@@ -56,8 +56,9 @@ int			main(int ac, char **av)
 	B = NULL;
 	if (stack_size(A) == 3 && !is_sorted(pile, 0))
 		treat_easy_sort(pile);
-	else if (fck_sorted(pile, 0) && !is_sorted(pile, 0))
+	else if (fck_sorted(pile, 0) && !is_sorted(pile, 0) && stack_size(A) > 3)
 		pre_sort(pile);
 	sort_me(pile);
+	free(pile);
 	return (0);
 }
